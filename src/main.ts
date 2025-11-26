@@ -4,13 +4,15 @@ import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { importProvidersFrom, providePlatformInitializer } from '@angular/core';
 import { GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { AuthInterceptor } from './app/interceptor/auth.interceptor';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideRouter(routes),
     providePlatformInitializer(platformBrowserDynamic),
     provideSocialAuthServiceConfig(),
@@ -25,7 +27,7 @@ function provideSocialAuthServiceConfig(): import("@angular/core").Provider | im
       providers: [
         {
           id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider('474189517927-hkk0j6dlbfgchjlpeblnpunsvp0hpjui.apps.googleusercontent.com')
+          provider: new GoogleLoginProvider('689417821185-ka24l7632cgg59rvva0ej2n2cnel2ckp.apps.googleusercontent.com')
         }
       ]
     } as SocialAuthServiceConfig

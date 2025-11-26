@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-new-user',
+  standalone: true,
   imports: [CommonModule, MatFormFieldModule, MatGridListModule, MatSelectModule, MatButtonModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css'
