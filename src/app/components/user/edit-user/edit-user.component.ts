@@ -30,7 +30,7 @@ export class EditUserComponent {
     userId:["", Validators.required],
     firstName:["", Validators.required],
     lastName:["", Validators.required],
-    role:["", Validators.required]
+    userRole:["", Validators.required]
   })
   user: User = {
     id: 0,
@@ -65,10 +65,11 @@ export class EditUserComponent {
   
   displayUser(user: User) {
     this.editUserForm.patchValue({
+      id: user.id,
       userId: user.userId,
       firstName: user.firstName,
       lastName: user.lastName,
-      role: user.role,
+      userRole: user.role,
     });
   }
 
@@ -80,7 +81,7 @@ export class EditUserComponent {
       userId: this.editUserForm.value.userId ?? "",
       firstName: this.editUserForm.value.firstName ?? "",
       lastName: this.editUserForm.value.lastName ?? "",
-      role: this.editUserForm.value.role ?? "",
+      role: this.editUserForm.value.userRole ?? "",
       createdDate:  "",
       updatedDate:  ""
     }

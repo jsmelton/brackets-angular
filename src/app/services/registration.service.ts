@@ -18,7 +18,7 @@ export class RegistrationService {
   url: string = 'http://localhost:8080/registrations';
 
   async getAllRegistrations(): Promise<RegistrationResponse[]> {
-    const data = await fetch(`${this.url}/registration`);
+    const data = await fetch(`${this.url}/registrations`);
     return (await data.json()) ?? [];
   }
 
